@@ -24,5 +24,3 @@ eye_cascade = cv.CascadeClassifier(path + 'haarcascade_eye.xml')
 
 os.chdir('Faces')
 contents = sorted(os.listdir())
-
-print("Hello world")
