@@ -17,10 +17,26 @@ gunfire_path = os.path.join(root_dir, 'gunfire.wav')
 tone_path = os.path.join(root_dir, 'tone.wav')
 
 # If any problems arise check the path below
-# TODO find haarcascade_frontalface_default and haarcascade_eye.xml in C:/ directory
 path = Path.path
 face_cascade = cv.CascadeClassifier(path + 'haarcascade_frontalface_default.xml')
 eye_cascade = cv.CascadeClassifier(path + 'haarcascade_eye.xml')
 
-os.chdir('Faces')
+os.chdir('Face_Detection/Faces')
 contents = sorted(os.listdir())
+print(contents)
+
+for image in contents:
+    print(f"\nMotion detected....{datetime.now()}")
+    discharge_weapon = True
+
+    engine.say("You have entered active firezone. \
+               Stop and face the gun immediately. \
+               When you hear the tone, you have 5 seconds to pass.")
+    engine.runAndWait()
+    time.sleep(3)
+
+    img_gray = cv.imread(image, cv.IMREAD_GRAYSCALE)
+    height, width = img_gray.shape
+    cv.imshow(f"Motion detected {image}", img_gray)
+    cv.waitKey(2000)
+    cv.destroyWindow('Motion detected {image}')
