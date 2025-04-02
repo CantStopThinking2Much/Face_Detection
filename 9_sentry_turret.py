@@ -1,12 +1,12 @@
 import os
 import time
 from datetime import datetime
-from playsound3 import playsound
-import pyttsx3
+from playsound3 import playsound  # to play wav and mp3 format audio files
+import pyttsx3  # supports native text to speech libraries on windows, reads texts directly from the program 
 import cv2 as cv
 from path import Path
 
-# Pythonpy program that disables the sentry gun's firing mechanism when it detects human faces in an image
+# Python program that disables the sentry gun's firing mechanism when it detects human faces in an image
 
 engine = pyttsx3.init()
 engine.setProperty('rate', 145)
