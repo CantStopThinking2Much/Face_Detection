@@ -40,3 +40,8 @@ for image in contents:
     cv.imshow(f"Motion detected {image}", img_gray)
     cv.waitKey(2000)
     cv.destroyWindow('Motion detected {image}')
+
+    face_rect_list = []
+    face_rect_list.append(face_cascade.detectMultiScale(image=img_gray,
+                                                        scaleFactor=1.1,
+                                                        minNeighbors=5))
