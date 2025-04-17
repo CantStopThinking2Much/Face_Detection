@@ -10,14 +10,14 @@ from path import Path
 
 engine = pyttsx3.init()
 engine.setProperty('rate', 145)
-engine.setProperty('volume', 1.0)
+engine.setProperty('volume', 0.3)
 
 path = Path.path
 face_cascade = cv.CascadeClassifier(path + 'haarcascade_frontalface_default.xml')
 eye_cascade = cv.CascadeClassifier(path + 'haarcascade_eye.xml')
 
 
-os.chdir('Real_World_Py\\Faces')
+os.chdir('Faces')
 contents = sorted(os.listdir())
 
 for image in contents:
