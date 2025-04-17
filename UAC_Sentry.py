@@ -10,14 +10,14 @@ from path import Path
 
 engine = pyttsx3.init()
 engine.setProperty('rate', 145)
-engine.setProperty('volume', 0.3)
+engine.setProperty('volume', 0.1)
 
 path = Path.path
 face_cascade = cv.CascadeClassifier(path + 'haarcascade_frontalface_default.xml')
 eye_cascade = cv.CascadeClassifier(path + 'haarcascade_eye.xml')
 
 
-os.chdir('Faces')
+os.chdir('Face_Detection/Faces')
 contents = sorted(os.listdir())
 
 for image in contents:
@@ -44,3 +44,20 @@ for image in contents:
     face_rect_list.append(face_cascade.detectMultiScale(image=img_gray,
                                                         scaleFactor=1.1,
                                                         minNeighbors=5))
+    
+    print(f"Searching {image} for eyes.")
+    for rect in face_rect_list:
+        for (x, y, w, h) in rect:
+            rect_4_eyes = img_gray[y:y+h, x:x+w]
+            # print(rect_4_eyes)
+            eyes = eye_cascade.detectMultiScale(image=rect_4_eyes,
+                                                scaleFactor=1.05,
+                                                minNeighbors=2)
+            print(eyes)
+
+            for (xe, ye, we, he) in eyes:
+                print("Eyes detected.")
+                center = (int(xe + 0.5 * we), int(ye + 0.5 * he))
+                radius = int((we + he)/ 3)
+                cv.circle(rect_4_eyes, center, radius, 255, 2)
+                cv.rectangle(img_gray, (x, y), (x+w, y+h), (255, 255, 255), 2)
