@@ -63,3 +63,5 @@ for image in contents:
                 cv.rectangle(img_gray, (x, y), (x+w, y+h), (255, 255, 255), 2)
                 discharge_weapon = False
                 break
+
+            # Testing Testing
