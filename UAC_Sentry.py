@@ -64,4 +64,3 @@ for image in contents:
                 discharge_weapon = False
                 break
 
-            # Testing Testing
